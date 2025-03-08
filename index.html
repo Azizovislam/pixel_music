@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Музыкальный плеер</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Боковое меню -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Музыкальный плеер</h2>
+            <button class="close-sidebar" id="close-sidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="sidebar-content">
+            <ul class="sidebar-menu">
+                <li class="sidebar-menu-item" data-tab="all">
+                    <i class="fas fa-music"></i>
+                    <span>Все треки</span>
+                </li>
+                <li class="sidebar-menu-item" data-tab="favorites">
+                    <i class="fas fa-heart"></i>
+                    <span>Понравившиеся</span>
+                </li>
+                <li class="sidebar-menu-item" data-tab="my-songs">
+                    <i class="fas fa-compact-disc"></i>
+                    <span>Моя музыка</span>
+                </li>
+                <li class="sidebar-menu-item" data-tab="playlists">
+                    <i class="fas fa-list"></i>
+                    <span>Плейлисты</span>
+                </li>
+                <li class="sidebar-menu-item" data-tab="history">
+                    <i class="fas fa-history"></i>
+                    <span>История</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Затемнение при открытии меню -->
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="container">
+        <div class="player">
+            <!-- Кнопка гамбургера -->
+            <button class="hamburger-btn" id="hamburger-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </div>
+            
+            <div class="album-cover-container">
+                <img id="album-cover" src="default-cover.svg" alt="Обложка альбома">
+                <div class="equalizer-container">
+                    <div class="equalizer">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="song-details">
+                <h2 id="song-title">Название песни</h2>
+                <p id="artist-name">Исполнитель</p>
+            </div>
+            
+            <div class="progress-container">
+                <span id="current-time">0:00</span>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+                <span id="duration">0:00</span>
+            </div>
+            
+            <div class="controls">
+                <button id="prev" class="control-btn">
+                    <i class="fas fa-backward"></i>
+                </button>
+                <button id="play" class="control-btn play-btn">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button id="next" class="control-btn">
+                    <i class="fas fa-forward"></i>
+                </button>
+            </div>
+            
+            <div class="upload-container" id="upload-container">
+                <label for="upload-input" class="upload-btn">
+                    <i class="fas fa-upload"></i>
+                    <span>Загрузить музыку</span>
+                </label>
+                <input type="file" id="upload-input" accept="audio/*" multiple>
+            </div>
+        </div>
+        
+        <div class="playlist-header">
+            <h3 id="current-library-title">Все треки</h3>
+            <div class="playlist-actions">
+                <button id="create-playlist-btn" class="action-btn">
+                    <i class="fas fa-plus"></i> Создать плейлист
+                </button>
+            </div>
+        </div>
+        
+        <div class="playlist" id="playlist">
+            <!-- Плейлист будет заполнен динамически -->
+        </div>
+        
+        <div id="playlists-container" class="playlists-container">
+            <!-- Плейлисты будут заполнены динамически -->
+        </div>
+    </div>
+    
+    <div class="modal" id="create-playlist-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Создать плейлист</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="playlist-name">Название плейлиста</label>
+                    <input type="text" id="playlist-name" placeholder="Введите название...">
+                </div>
+                <div class="form-group">
+                    <label for="playlist-description">Описание (необязательно)</label>
+                    <textarea id="playlist-description" placeholder="Добавьте описание..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-playlist" class="btn btn-secondary">Отмена</button>
+                <button id="save-playlist" class="btn btn-primary">Создать</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <i class="fas fa-info-circle"></i>
+        </div>
+        <div class="notification-content">
+            <div class="notification-title">Уведомление</div>
+            <div class="notification-message">Текст уведомления</div>
+        </div>
+        <button class="notification-close">&times;</button>
+    </div>
+    
+    <audio id="audio-player"></audio>
+    
+    <script src="logic/script.js"></script>
+</body>
+</html> 
